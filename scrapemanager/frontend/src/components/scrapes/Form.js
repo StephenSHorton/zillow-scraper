@@ -5,8 +5,18 @@ import { addScrape } from "../../actions/scrapes";
 import axios from "axios";
 
 class Form extends Component {
+  state = {
+    url: "",
+  };
+
   static propTypes = {
     addScrape: PropTypes.func.isRequired,
+  };
+
+  handleChange = (e) => {
+    this.setState({
+      url: e.target.value,
+    });
   };
 
   returnZPID = (url) => {
@@ -17,26 +27,21 @@ class Form extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const url = e.target.value;
-    const zpid = this.returnZPID(url);
+    const currentZilUrl = this.state.url;
+    const zpid = this.returnZPID(this.state.url);
     axios
       .get(`/zillowproxy/${zpid}`)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
+        const scrape = { ...res.data, zillowUrl: currentZilUrl };
+        console.log(scrape);
+        this.props.addScrape(scrape);
       })
       .catch((err) => console.log(err));
+    this.setState({
+      url: "",
+    });
   };
-  // onSubmit = (e) => {
-  //   // e.preventDefault();
-  //   // axios.get(url) //zillowproxy/30666801
-  //   const i = url.lastIndexOf("zpid");
-  //   console.log(i);
-  //   // const scrape = {};
-  //   // this.props.addScrape(scrape);
-  //   this.setState({
-  //     url: "",
-  //   });
-  // };
 
   render() {
     return (
@@ -49,6 +54,8 @@ class Form extends Component {
               autoComplete="off"
               type="url"
               name="url"
+              onChange={this.handleChange}
+              value={this.state.url}
             />
           </div>
           <div className="form-group">

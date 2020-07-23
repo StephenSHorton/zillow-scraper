@@ -1,0 +1,8 @@
+table th,
+.table td {
+  vertical-align: middle;
+}
+
+.no-image {
+  padding: 50px 75px 75px 50px;
+}

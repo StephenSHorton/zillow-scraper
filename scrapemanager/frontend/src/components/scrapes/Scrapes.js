@@ -28,17 +28,45 @@ class Scrapes extends React.Component {
               <th>Year Built</th>
               <th>Square Feet</th>
               <th />
+              <th />
             </tr>
           </thead>
           <tbody>
             {this.props.scrapes.map((scrape) => (
               <tr key={scrape.id}>
-                <td>{scrape.propertyimage}</td>
+                <td>
+                  {scrape.propertyImage !== "" ? (
+                    <img
+                      src={scrape.propertyImage}
+                      alt="preview"
+                      width="175"
+                      height="125"
+                    />
+                  ) : (
+                    // <div className="no-image"></div>
+                    <img
+                      src="https://sisterhoodofstyle.com/wp-content/uploads/2018/02/no-image-1.jpg"
+                      alt="no image found"
+                      width="175"
+                      height="125"
+                    />
+                  )}
+                </td>
                 <td>{scrape.type}</td>
                 <td>{scrape.bedrooms}</td>
                 <td>{scrape.bathrooms}</td>
-                <td>{scrape.yearbuilt}</td>
-                <td>{scrape.squarefeet}</td>
+                <td>{scrape.yearBuilt}</td>
+                <td>{scrape.squareFeet}</td>
+                <td>
+                  <a
+                    className="btn btn-success btn-sm"
+                    href={scrape.zillowUrl}
+                    target="_blank"
+                    referrerPolicy="no-refferrer"
+                  >
+                    View
+                  </a>
+                </td>
                 <td>
                   <button
                     className="btn btn-danger btn-sm"

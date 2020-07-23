@@ -5,5 +5,5 @@ from . import zillowproxy
 urlpatterns = [
     path('', include('frontend.urls')),
     path('', include('scrapes.urls')),
-    path('zillowproxy/<slug:zpid>', zillowproxy.get_zillow_response)
+    path('zillowproxy/<int:zpid>', zillowproxy.get_zillow_response)
 ]
