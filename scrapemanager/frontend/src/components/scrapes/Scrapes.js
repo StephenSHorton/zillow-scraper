@@ -21,24 +21,24 @@ class Scrapes extends React.Component {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th>Address</th>
+              <th>Image</th>
               <th>Type</th>
               <th>Bedrooms</th>
+              <th>Bathrooms</th>
               <th>Year Built</th>
               <th>Square Feet</th>
-              <th>Parking</th>
               <th />
             </tr>
           </thead>
           <tbody>
             {this.props.scrapes.map((scrape) => (
               <tr key={scrape.id}>
-                <td>{scrape.address}</td>
+                <td>{scrape.propertyimage}</td>
                 <td>{scrape.type}</td>
                 <td>{scrape.bedrooms}</td>
+                <td>{scrape.bathrooms}</td>
                 <td>{scrape.yearbuilt}</td>
                 <td>{scrape.squarefeet}</td>
-                <td>{scrape.parking}</td>
                 <td>
                   <button
                     className="btn btn-danger btn-sm"

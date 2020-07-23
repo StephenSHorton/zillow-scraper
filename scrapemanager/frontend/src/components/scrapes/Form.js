@@ -2,22 +2,32 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addScrape } from "../../actions/scrapes";
-import getScrape from "./getScrape";
+import axios from "axios";
 
 class Form extends Component {
   static propTypes = {
     addScrape: PropTypes.func.isRequired,
   };
 
+  componentDidMount() {
+    console.log("UPDATE");
+  }
+
   onSubmit = (e) => {
-    e.preventDefault();
-    console.log(`URL: ${e.target.value}`);
-    const scrape = getScrape();
-    this.props.addScrape(scrape);
-    this.setState({
-      url: "",
-    });
+    const i = url.lastIndexOf("zpid");
+    console.log(i);
   };
+  // onSubmit = (e) => {
+  //   // e.preventDefault();
+  //   // axios.get(url) //zillowproxy/30666801
+  //   const i = url.lastIndexOf("zpid");
+  //   console.log(i);
+  //   // const scrape = {};
+  //   // this.props.addScrape(scrape);
+  //   this.setState({
+  //     url: "",
+  //   });
+  // };
 
   render() {
     return (
