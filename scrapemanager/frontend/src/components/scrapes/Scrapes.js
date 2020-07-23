@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Draggable, Droppable } from "react-beautiful-dnd";
 import { getScrapes, deleteScrape } from "../../actions/scrapes";
 
 class Scrapes extends React.Component {
@@ -32,50 +33,54 @@ class Scrapes extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.scrapes.map((scrape) => (
-              <tr key={scrape.id}>
-                <td>
-                  {scrape.propertyImage !== "" ? (
-                    <img
-                      src={scrape.propertyImage}
-                      alt="preview"
-                      width="175"
-                      height="125"
-                    />
-                  ) : (
-                    // <div className="no-image"></div>
-                    <img
-                      src="https://sisterhoodofstyle.com/wp-content/uploads/2018/02/no-image-1.jpg"
-                      alt="no image found"
-                      width="175"
-                      height="125"
-                    />
-                  )}
-                </td>
-                <td>{scrape.type}</td>
-                <td>{scrape.bedrooms}</td>
-                <td>{scrape.bathrooms}</td>
-                <td>{scrape.yearBuilt}</td>
-                <td>{scrape.squareFeet}</td>
-                <td>
-                  <a
-                    className="btn btn-success btn-sm"
-                    href={scrape.zillowUrl}
-                    target="_blank"
-                    referrerPolicy="no-refferrer"
-                  >
-                    View
-                  </a>
-                </td>
-                <td>
-                  <button
-                    className="btn btn-danger btn-sm"
-                    onClick={this.props.deleteScrape.bind(this, scrape.id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
+            {this.props.scrapes.map((scrape, index) => (
+              <Droppable key={scrape.id}>
+                <Draggable draggableId={scrape.id} index={index}>
+                  <tr>
+                    <td>
+                      {scrape.propertyImage !== "" ? (
+                        <img
+                          src={scrape.propertyImage}
+                          alt="preview"
+                          width="175"
+                          height="125"
+                        />
+                      ) : (
+                        // <div className="no-image"></div>
+                        <img
+                          src="https://sisterhoodofstyle.com/wp-content/uploads/2018/02/no-image-1.jpg"
+                          alt="no image found"
+                          width="175"
+                          height="125"
+                        />
+                      )}
+                    </td>
+                    <td>{scrape.type}</td>
+                    <td>{scrape.bedrooms}</td>
+                    <td>{scrape.bathrooms}</td>
+                    <td>{scrape.yearBuilt}</td>
+                    <td>{scrape.squareFeet}</td>
+                    <td>
+                      <a
+                        className="btn btn-success btn-sm"
+                        href={scrape.zillowUrl}
+                        target="_blank"
+                        referrerPolicy="no-refferrer"
+                      >
+                        View
+                      </a>
+                    </td>
+                    <td>
+                      <button
+                        className="btn btn-danger btn-sm"
+                        onClick={this.props.deleteScrape.bind(this, scrape.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                </Draggable>
+              </Droppable>
             ))}
           </tbody>
         </table>
