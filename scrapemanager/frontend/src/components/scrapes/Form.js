@@ -9,13 +9,22 @@ class Form extends Component {
     addScrape: PropTypes.func.isRequired,
   };
 
-  componentDidMount() {
-    console.log("UPDATE");
-  }
+  returnZPID = (url) => {
+    const x = url.lastIndexOf("_zpid");
+    const y = url.lastIndexOf("/", x) + 1;
+    return url.slice(y, x);
+  };
 
   onSubmit = (e) => {
-    const i = url.lastIndexOf("zpid");
-    console.log(i);
+    e.preventDefault();
+    const url = e.target.value;
+    const zpid = this.returnZPID(url);
+    axios
+      .get(`/zillowproxy/${zpid}`)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
   };
   // onSubmit = (e) => {
   //   // e.preventDefault();
