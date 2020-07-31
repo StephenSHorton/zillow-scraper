@@ -1,4 +1,5 @@
 # zillow-scraper
+This project is a web-app that utitlizes the Zillow API to scrape data from a Zillow url and display it on the app.
 
 ## Setup:
 - Make a new file on your desktop
