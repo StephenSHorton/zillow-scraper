@@ -1,6 +1,6 @@
 # zillow-scraper
 
-# Setup:
+## Setup:
 - Make a new file on your desktop
 
 In that file:
