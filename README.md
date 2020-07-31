@@ -1,7 +1,7 @@
 # zillow-scraper
 
 Setup:
--Make a new file on your desktop
+- Make a new file on your desktop
 (In that file)
 1.Git clone repo
 2.npm install
